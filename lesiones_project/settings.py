@@ -12,9 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ============================
 
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-proyecto-lesiones")
-DEBUG = os.getenv("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = []
+DEBUG = True
+
+ALLOWED_HOSTS = ['*']
 
 
 # ============================
@@ -22,7 +23,6 @@ ALLOWED_HOSTS = []
 # ============================
 
 INSTALLED_APPS = [
-    # Django Base Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Apps del proyecto
     'app_lesiones',
     'cuentas',
 ]
@@ -62,7 +61,6 @@ ROOT_URLCONF = 'lesiones_project.urls'
 #          TEMPLATES
 # ============================
 
-# Agregamos BASE_DIR / 'templates' para poder usar un base.html global
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -90,15 +88,12 @@ WSGI_APPLICATION = 'lesiones_project.wsgi.application'
 # ============================
 #         BASE DE DATOS
 # ============================
+# 👉 SQLite para Render (simple y aceptado)
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lesiones_db',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -119,7 +114,7 @@ USE_TZ = True
 # ============================
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # ============================
@@ -135,7 +130,7 @@ LOGOUT_REDIRECT_URL = 'login'
 #     CONTROL DE SESIÓN
 # ============================
 
-SESSION_COOKIE_AGE = 1800  # 30 min
+SESSION_COOKIE_AGE = 1800
 SESSION_SAVE_EVERY_REQUEST = True
 
 
@@ -151,17 +146,6 @@ MESSAGE_TAGS = {
     messages.INFO: 'info',
     messages.WARNING: 'warning',
 }
-
-
-# ============================
-#    CONFIGURACIÓN SEGURIDAD
-# ============================
-
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = False
-X_FRAME_OPTIONS = 'DENY'
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
 
 
 # ============================
