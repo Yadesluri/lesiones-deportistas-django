@@ -1,0 +1,25 @@
+{% extends 'app_lesiones/base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 text-center">
+
+    <h2>Bienvenido, {{ usuario.username }}</h2>
+    <p>Tu rol actual es: <strong>{{ grupo }}</strong></p>
+
+    <hr>
+
+    {% if grupo == 'Entrenadores' %}
+        <a href="/app/estudiantes/" class="btn btn-primary btn-lg m-2">👨‍🎓 Gestionar Estudiantes</a>
+        <a href="/app/lesiones/" class="btn btn-danger btn-lg m-2">🤕 Gestionar Lesiones</a>
+
+    {% elif grupo == 'Kinesiólogos' %}
+        <a href="/app/tratamientos/" class="btn btn-success btn-lg m-2">💊 Gestionar Tratamientos</a>
+
+    {% else %}
+        <p>No tienes un rol asignado. Contacta al administrador.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'app_lesiones/base.html' %}
+
+{% block content %}
+<div class="card card-custom p-4">
+    <h2 class="panel-title">{{ titulo }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        {% for field in form %}
+            <div class="mb-3">
+                <label class="form-label">{{ field.label }}</label>
+                {{ field }}
+            </div>
+        {% endfor %}
+
+        <button class="btn btn-primary">Guardar</button>
+        <a href="{% url volver %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

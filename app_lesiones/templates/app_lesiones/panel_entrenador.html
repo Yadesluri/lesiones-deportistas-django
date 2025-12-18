@@ -1,0 +1,11 @@
+{% extends 'app_lesiones/base.html' %}
+
+{% block content %}
+<h1>Panel del Entrenador</h1>
+
+<div class="mt-4">
+    <a href="{% url 'lista_estudiantes' %}" class="btn btn-primary btn-lg mb-2">Gestionar Estudiantes</a>
+    <br>
+    <a href="{% url 'lista_lesiones' %}" class="btn btn-secondary btn-lg">Gestionar Lesiones</a>
+</div>
+{% endblock %}

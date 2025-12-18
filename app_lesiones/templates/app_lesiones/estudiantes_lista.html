@@ -1,0 +1,42 @@
+{% extends 'app_lesiones/base.html' %}
+{% block content %}
+
+<h2 class="panel-title">👨‍🎓 Lista de Estudiantes</h2>
+
+<a href="{% url 'crear_estudiante' %}" class="btn btn-success mb-3">➕ Nuevo Estudiante</a>
+
+<div class="card card-custom p-3">
+<table class="table table-hover table-striped table-bordered">
+    <thead class="table-primary">
+        <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Deporte</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for e in estudiantes %}
+        <tr>
+            <td>{{ e.nombre }}</td>
+            <td>{{ e.edad }}</td>
+            <td>{{ e.deporte }}</td>
+            <td>
+                <a href="{% url 'editar_estudiante' e.id %}" class="btn btn-warning btn-sm">✏️</a>
+                <a href="{% url 'eliminar_estudiante' e.id %}" class="btn btn-danger btn-sm">🗑️</a>
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center fw-bold">No hay estudiantes registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<a href="{% url 'panel' %}" class="btn btn-secondary mt-3">⬅ Volver</a>
+{% endblock %}
+
