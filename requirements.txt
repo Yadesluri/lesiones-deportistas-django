@@ -1,6 +1,7 @@
 Django==5.2.7
+gunicorn
 mysqlclient
 PyMySQL
 python-dotenv
 Pillow
-gunicorn
+requests
